@@ -1,0 +1,41 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+
+# Server-side only mod: clients without it may still connect to a server that has it installed.
+displayTest = "IGNORE_ALL_VERSION"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+authors = "${mod_authors}"
+
+description = '''
+${mod_description}
+'''
+
+[[mixins]]
+config = "tfmgscanthrottle.mixins.json"
+
+[[dependencies.tfmgscanthrottle]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.tfmgscanthrottle]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+# The mod exists only to throttle TFMG, so it must not load without it.
+[[dependencies.tfmgscanthrottle]]
+modId = "tfmg"
+type = "required"
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
